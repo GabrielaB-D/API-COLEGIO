@@ -356,6 +356,15 @@ app.delete('/matriculas/:id', async (req, res) => {
     }
 });
 
+app.get('/horarios', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM horarios');
+        res.json(result.rows);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(3000, () => {
     console.log('Servidor corriendo en http://localhost:3000');
 });
